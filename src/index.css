@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
+:root {
+  --color-septima-primary: #1D4533;
+  --color-septima-text: #5E3122;
+  --color-septima-bg: #F7EAE0;
+  --color-septima-accent: #F9D2BA;
+  --color-septima-accent-hover: #F2BD9F;
+}
+

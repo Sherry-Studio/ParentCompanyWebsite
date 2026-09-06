@@ -1,0 +1,7 @@
+{
+  "name": "Septima Group",
+  "description": "Corporate umbrella brand website for Septima Group, showcasing holding ventures, products, and developer directory.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
