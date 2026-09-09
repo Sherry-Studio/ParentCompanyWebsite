@@ -6,6 +6,21 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
+    optimizeDeps: {
+      include: [
+        'react',
+        'react-dom',
+        'react-dom/client',
+        'motion/react',
+        'lenis',
+        'gsap',
+        'gsap/ScrollTrigger',
+        'three',
+        '@react-three/fiber',
+        '@react-three/drei',
+        'lucide-react',
+      ],
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

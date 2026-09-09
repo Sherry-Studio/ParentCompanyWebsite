@@ -54,7 +54,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         </span>
         {showSubtitle && (
           <span className={`text-[10px] tracking-[0.25em] uppercase font-bold mt-1 ${subtitleColor}`}>
-            Foundational Holding Entity
+            Digital Product Studio
           </span>
         )}
       </div>

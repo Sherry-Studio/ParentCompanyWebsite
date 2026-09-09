@@ -15,6 +15,8 @@ export interface ProductItem {
   };
   keyHighlights: string[];
   status: 'Active' | 'Beta' | 'Scaling';
+  platform?: string;
+  year?: string;
 }
 
 export interface DeveloperItem {

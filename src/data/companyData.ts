@@ -3,12 +3,12 @@ import { DeveloperItem, NavItem, ProductItem } from '../types';
 export const COMPANY_INFO = {
   name: 'Septima Group',
   legalName: 'Septima Group Holdings Ltd.',
-  tagline: 'Strategic Holding & Venture Steward',
-  subTagline: 'Empowering specialized teams to engineer groundbreaking interactive media and enterprise digital solutions.',
+  tagline: 'We build digital products.',
+  subTagline: 'Apps, games, platforms and experiences — built from idea to launch.',
   overview:
-    'Septima Group is a modern parent and holding company providing high-conviction capital, shared operational infrastructure, and strategic direction to focused technology ventures and creative studios.',
+    'Septima Group is an independent digital product and technology company. We design, build and operate our own products — and take selected client ideas from concept to production.',
   contactEmail: 'contact@septimagroup.com',
-  corporateAddress: 'Corporate Headquarters — Registry District & Digital Operations',
+  corporateAddress: 'Registry District — Digital Product & Engineering Operations',
   socials: {
     linkedin: 'https://linkedin.com/company/septima-group',
     github: 'https://github.com/septima-group',
@@ -18,26 +18,60 @@ export const COMPANY_INFO = {
 };
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Overview', href: '#overview', id: 'overview' },
-  { label: 'About', href: '#about', id: 'about' },
-  { label: 'Ventures', href: '#products', id: 'products' },
-  { label: 'Directory', href: '#developers', id: 'developers' },
+  { label: 'Studio', href: '#top', id: 'top' },
+  { label: 'What We Build', href: '#build', id: 'build' },
+  { label: 'Products', href: '#products', id: 'products' },
+  { label: 'Games', href: '#games', id: 'games' },
+  { label: 'Custom', href: '#custom', id: 'custom' },
+  { label: 'Team', href: '#studio', id: 'studio' },
   { label: 'Contact', href: '#contact', id: 'contact' },
 ];
 
+/** The four things Septima Group builds. */
+export const BUILD_CATEGORIES = [
+  {
+    id: 'products',
+    index: '01',
+    title: 'Products',
+    blurb: 'Our own digital products — designed, built and operated in-house.',
+    detail: 'Long-lived platforms and tools we own end to end, from roadmap to infrastructure.',
+  },
+  {
+    id: 'games',
+    index: '02',
+    title: 'Games',
+    blurb: 'Interactive experiences for mobile and web.',
+    detail: 'Real-time mechanics, physics-driven multiplayer and proprietary worldbuilding toolsets.',
+  },
+  {
+    id: 'apps',
+    index: '03',
+    title: 'Apps',
+    blurb: 'Useful consumer and business applications.',
+    detail: 'Focused mobile and web apps that solve one problem exceptionally well.',
+  },
+  {
+    id: 'custom',
+    index: '04',
+    title: 'Custom',
+    blurb: 'Digital products and software built with selected clients.',
+    detail: 'We embed as a product team and ship — strategy, design, engineering, launch.',
+  },
+];
+
 /**
- * Sub-brands showcased under Septima Group umbrella.
- * Scalable: To add a 3rd or 4th product, simply append a new object to this array.
+ * Products Septima Group builds and owns.
+ * Scalable: append a new object to extend the portfolio.
  */
 export const SUB_BRANDS: ProductItem[] = [
   {
     id: 'septima-gaming',
     name: 'Septima Interactive',
     type: 'gaming',
-    categoryLabel: 'Gaming & Interactive Entertainment',
+    categoryLabel: 'Games & Interactive Entertainment',
     shortTagline: 'Next-generation games and immersive real-time narrative worlds.',
     description:
-      'Our dedicated interactive entertainment studio focuses on high-fidelity game mechanics, physics-driven multiplayer experiences, and proprietary creative toolsets.',
+      'Our interactive entertainment studio, focused on high-fidelity game mechanics, physics-driven multiplayer and proprietary creative toolsets.',
     externalUrl: 'https://interactive.septimagroup.com',
     logoPlaceholder: {
       symbol: 'SI',
@@ -46,15 +80,17 @@ export const SUB_BRANDS: ProductItem[] = [
     },
     keyHighlights: ['Multiplatform Gameplay', 'Proprietary Worldbuilding', 'Live-Ops Infrastructure'],
     status: 'Active',
+    platform: 'Mobile · Web · PC',
+    year: '2024',
   },
   {
     id: 'septima-services',
     name: 'Septima Digital Solutions',
     type: 'service',
-    categoryLabel: 'Enterprise Digital Services & Advisory',
-    shortTagline: 'Modern software engineering, cloud transformation, and strategic digital consulting.',
+    categoryLabel: 'Platforms & Enterprise Software',
+    shortTagline: 'Modern software engineering, cloud platforms and product consulting.',
     description:
-      'A specialized digital consultancy partnering with growth organizations to architect resilient distributed systems, enterprise web platforms, and automated workflow pipelines.',
+      'The team that partners with growth organisations to architect resilient distributed systems, enterprise web platforms and automated workflow pipelines.',
     externalUrl: 'https://solutions.septimagroup.com',
     logoPlaceholder: {
       symbol: 'SDS',
@@ -63,12 +99,43 @@ export const SUB_BRANDS: ProductItem[] = [
     },
     keyHighlights: ['Full-Stack Cloud Architecture', 'System Modernization', 'Custom Enterprise APIs'],
     status: 'Active',
+    platform: 'Web · Cloud · API',
+    year: '2024',
   },
 ];
 
+/** Custom development capabilities. */
+export const SERVICES = [
+  { index: '01', title: 'Product Strategy', hint: 'Positioning, roadmap, scope and the shape of v1.' },
+  { index: '02', title: 'UI / UX Design', hint: 'Systems, prototypes and interface craft.' },
+  { index: '03', title: 'Mobile Development', hint: 'Native and cross-platform apps for iOS and Android.' },
+  { index: '04', title: 'Web Development', hint: 'Fast, accessible web apps and marketing surfaces.' },
+  { index: '05', title: 'Backend & APIs', hint: 'Distributed services, data models and integrations.' },
+  { index: '06', title: 'Game Development', hint: 'Real-time engines, multiplayer and tooling.' },
+  { index: '07', title: 'AI Integration', hint: 'Model-backed features, pipelines and evaluation.' },
+  { index: '08', title: 'Cloud & Deployment', hint: 'Infrastructure, CI/CD and live-ops.' },
+];
+
+/** How we build. */
+export const PROCESS_STEPS = [
+  { index: '01', title: 'Idea', body: 'We pressure-test the concept, the audience and the smallest version worth shipping.' },
+  { index: '02', title: 'Design', body: 'Flows, interface systems and prototypes you can hold before a line of production code.' },
+  { index: '03', title: 'Build', body: 'Small senior teams shipping in short cycles against a real roadmap.' },
+  { index: '04', title: 'Test', body: 'Automated coverage, real-device QA and usability sessions with real users.' },
+  { index: '05', title: 'Launch', body: 'Store submission, infrastructure, analytics and a day-one operations plan.' },
+  { index: '06', title: 'Iterate', body: 'We stay on. Products are operated, measured and improved release over release.' },
+];
+
+/** Forward-looking work. */
+export const WHATS_NEXT = [
+  { tag: 'In Design', title: 'A creator toolset for Septima Interactive worlds', note: 'Bringing proprietary worldbuilding tools to external studios.' },
+  { tag: 'In Build', title: 'Shared product infrastructure layer', note: 'One identity, billing and analytics spine across every Septima product.' },
+  { tag: 'Exploration', title: 'AI-assisted production pipeline', note: 'Model-backed tooling for asset, content and QA workflows.' },
+];
+
 /**
- * Developer & Contributor Directory.
- * Scalable: Each entry links directly to external personal portfolio sites.
+ * The studio — the people behind the products.
+ * Each entry links directly to that person's personal portfolio / repositories.
  */
 export const DEVELOPERS_DIRECTORY: DeveloperItem[] = [
   {
@@ -135,18 +202,18 @@ export const DEVELOPERS_DIRECTORY: DeveloperItem[] = [
 
 export const PILLARS = [
   {
-    title: 'Founder Independence',
+    title: 'We own what we build',
     description:
-      'We preserve the creative vision and velocity of each venture while removing administrative friction through centralized stewardship.',
+      'Most of our work is our own. Products are designed, operated and improved in-house — not handed off.',
   },
   {
-    title: 'Long-Horizon Capital',
+    title: 'Small senior teams',
     description:
-      'Patient, aligned capitalization without the arbitrary constraints of short-term quarterly cycles.',
+      'Focused groups of principal engineers and designers, shipping in short cycles without layers in between.',
   },
   {
-    title: 'Shared Infrastructure',
+    title: 'Built to last',
     description:
-      'Consolidated legal, engineering standards, infrastructure pipelines, and executive governance across all subsidiaries.',
+      'Decade-scale commitment to the products and the platforms underneath them.',
   },
 ];
