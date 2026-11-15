@@ -20,7 +20,8 @@ export const Contact: React.FC = () => {
   const [copied, setCopied] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const formspreeId = (import.meta as any).env?.VITE_FORMSPREE_ID || 'xbjnqzzq';
+  /** Formspree form id. Override per-environment with VITE_FORMSPREE_ID. */
+  const formspreeId = (import.meta as any).env?.VITE_FORMSPREE_ID || 'myewejgd';
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -46,7 +47,12 @@ export const Contact: React.FC = () => {
           email: formData.email,
           company: formData.company || '—',
           service: formData.service || 'Not specified',
-          subject: `New enquiry via ${COMPANY_INFO.name} website`,
+          // Formspree reads these underscore keys: the notification's subject
+          // line, and the address hitting reply goes to.
+          _subject: `New enquiry via ${COMPANY_INFO.name} website — ${
+            formData.service || 'General'
+          }`,
+          _replyto: formData.email,
           message: formData.message,
         }),
       });
