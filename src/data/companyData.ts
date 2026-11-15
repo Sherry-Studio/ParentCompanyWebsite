@@ -34,7 +34,7 @@ export const COMPANY_INFO = {
    */
   contactEmails: ['sadiqamin324@gmail.com', 'shehryarnasir89@gmail.com'],
   /** Change this one line when the production domain is final. */
-  siteUrl: 'https://byesplus.sherryswebsite.store',
+  siteUrl: 'https://byesplus.sherrywebsite.store',
   socials: {
     linkedin: 'https://www.linkedin.com/company/byesplus/',
   },
