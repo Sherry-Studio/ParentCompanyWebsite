@@ -1,7 +1,5 @@
 {
-  "name": "Septima Group",
-  "description": "Corporate umbrella brand website for Septima Group, showcasing holding ventures, products, and developer directory.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "Byesplus",
+  "description": "Marketing website for Byesplus — a software and AI studio offering AI & automation, software, web and mobile development, design, video production and SEO.",
+  "requestFramePermissions": []
 }
-

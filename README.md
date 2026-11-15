@@ -1,20 +1,65 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Byesplus — company website
 
-# Run and deploy your AI Studio app
+Marketing site for **Byesplus** — *Less complexity. Plus intelligence.*
+A software and AI studio: AI & automation, software, web, mobile, design, video and search growth.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/1856e2a2-55f1-4316-be74-d8dde98d4256
+React 19 · TypeScript · Vite 6 · Tailwind CSS v4 · Motion · GSAP + Lenis (smooth scroll) · three.js / React Three Fiber (background scene) · lucide-react
 
-## Run Locally
+## Run locally
 
-**Prerequisites:**  Node.js
+```bash
+npm install --legacy-peer-deps
+npm run dev
+```
 
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Dev server on port 3000 |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Serve the production build |
+| `npm run lint` | TypeScript check (`tsc --noEmit`) |
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Structure
+
+```
+src/
+  data/companyData.ts   All copy, services, process, FAQs — single source of truth
+  sections/             One file per page section, composed in App.tsx
+  components/           Nav, Footer, BrandLogo, Decor (PlusField/SectionHeading), Cursor…
+  components/3d/        Background plus-lattice scene + CSS fallback
+  lib/                  Smooth scroll, reveal/mask animation primitives
+  index.css             Design tokens (@theme) and component classes
+brand/                  OG + LinkedIn banner images and their HTML sources
+```
+
+**Content lives in `src/data/companyData.ts`.** Services, process steps, engagement
+models, FAQs and company details are all data — edit there, not in the components.
+
+## Contact form
+
+Posts to [Formspree](https://formspree.io). Set the form id with an env var:
+
+```
+VITE_FORMSPREE_ID=your_form_id
+```
+
+Without it the build falls back to the id currently hard-coded in
+`src/sections/Contact.tsx`.
+
+## Brand
+
+- Navy `#1b2a36` · ink `#070d13` · emerald signal `#10a06b` / `#1fd394` · mist `#eef3f1`
+- Type: Plus Jakarta Sans (display + body), JetBrains Mono (labels)
+- The `+` from the wordmark is the recurring graphic device: background fields,
+  list bullets, section eyebrows and the 3D background objects.
+
+Regenerate the social images by opening `brand/og-source.html` or
+`brand/linkedin-banner-source.html` at 1200×630 / 1584×396 and exporting a screenshot.
+
+## Deployment
+
+Deployed on Vercel. The production domain is set in two places —
+`COMPANY_INFO.siteUrl` in `src/data/companyData.ts` and the `canonical` / `og:url`
+tags in `index.html`.

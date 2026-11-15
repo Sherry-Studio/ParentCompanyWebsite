@@ -48,20 +48,20 @@ export const Cursor: React.FC = () => {
     <div className="pointer-events-none fixed inset-0 z-[100] hidden md:block" aria-hidden="true">
       <div
         ref={ring}
-        className="absolute -left-5 -top-5 flex h-10 w-10 items-center justify-center rounded-full border border-peach/70 transition-[width,height,background-color] duration-300"
+        className="absolute -left-5 -top-5 flex h-10 w-10 items-center justify-center rounded-full border border-signal-bright/70 transition-[width,height,background-color] duration-300"
         style={{
           width: active ? 64 : 40,
           height: active ? 64 : 40,
           left: active ? -32 : -20,
           top: active ? -32 : -20,
-          backgroundColor: active ? 'rgba(249,210,186,0.12)' : 'transparent',
+          backgroundColor: active ? 'rgba(31,211,148,0.12)' : 'transparent',
         }}
       >
         {label ? (
-          <span className="t-eyebrow text-[9px] text-peach">{label}</span>
+          <span className="t-eyebrow text-[9px] text-signal-bright">{label}</span>
         ) : null}
       </div>
-      <div ref={dot} className="absolute -left-[3px] -top-[3px] h-1.5 w-1.5 rounded-full bg-peach" />
+      <div ref={dot} className="absolute -left-[3px] -top-[3px] h-1.5 w-1.5 rounded-full bg-signal-bright" />
     </div>
   );
 };

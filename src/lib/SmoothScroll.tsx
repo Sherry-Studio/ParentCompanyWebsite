@@ -17,6 +17,15 @@ export function getLenis() {
  */
 export const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
+    // Always open at the top: a restored scroll position leaves the hero's
+    // scroll-linked entrance animation mid-flight on reload.
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) {
       ScrollTrigger.refresh();
@@ -48,7 +57,8 @@ export const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({ children
       const el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      lenis.scrollTo(el as HTMLElement, { offset: -1, duration: 1.4 });
+      // Clear the fixed header so section headings are never tucked under it.
+      lenis.scrollTo(el as HTMLElement, { offset: id === '#top' ? 0 : -72, duration: 1.4 });
     };
     document.addEventListener('click', onClick);
 

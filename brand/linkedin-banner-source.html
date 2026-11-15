@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>banner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1584px; height:396px; overflow:hidden; }
+  body {
+    font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+    background:
+      radial-gradient(90% 120% at 78% 18%, #1b2a36 0%, #111e28 45%, #070d13 100%);
+    position:relative;
+    color:#eef3f1;
+  }
+  .plusgrid { position:absolute; inset:0; opacity:.16; }
+  .glow { position:absolute; border-radius:50%; filter:blur(110px); }
+  .g1 { width:620px; height:620px; right:-80px; top:-120px; background:rgba(31,211,148,.26); }
+  .g2 { width:420px; height:420px; left:-120px; bottom:-160px; background:rgba(31,211,148,.12); }
+  .shapes { position:absolute; inset:0; }
+  .p { position:absolute; }
+  .p i { position:absolute; display:block; border-radius:22%; }
+  .p .v { left:33.3%; top:0; width:33.4%; height:100%; }
+  .p .h { left:0; top:33.3%; width:100%; height:33.4%; }
+  .content { position:relative; z-index:3; padding:48px 72px; height:100%; display:flex; flex-direction:column; justify-content:space-between; }
+  .mark { display:flex; align-items:center; gap:18px; }
+  .word { font-size:38px; font-weight:800; letter-spacing:-.045em; }
+  .plus { color:#1fd394; }
+  h1 { font-size:58px; font-weight:800; letter-spacing:-.045em; line-height:.96; max-width:980px; }
+  h1 .accent { color:#1fd394; }
+  .meta { display:flex; align-items:center; gap:14px; font-family:"JetBrains Mono",monospace; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:rgba(238,243,241,.5); }
+  .dot { width:7px; height:7px; border-radius:50%; background:#1fd394; }
+  .rule { height:1px; background:rgba(238,243,241,.14); margin:16px 0 14px; }
+  .svcs { font-family:"JetBrains Mono",monospace; font-size:15px; letter-spacing:.14em; text-transform:uppercase; color:rgba(238,243,241,.6); }
+  .svcs b { color:#1fd394; font-weight:500; margin:0 10px; }
+</style>
+</head>
+<body>
+  <svg class="plusgrid" aria-hidden="true">
+    <defs>
+      <pattern id="pg" width="64" height="64" patternUnits="userSpaceOnUse">
+        <path d="M32 25v14M25 32h14" stroke="#1fd394" stroke-width="1.4" stroke-linecap="round"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#pg)"/>
+  </svg>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+
+  <div class="shapes">
+    <div class="p" style="right:120px; top:-40px; width:300px; height:300px; transform:rotate(14deg); filter:drop-shadow(0 40px 70px rgba(0,0,0,.5));">
+      <i class="v" style="background:linear-gradient(160deg,#28e6a6,#0d8a5c);"></i>
+      <i class="h" style="background:linear-gradient(200deg,#1fd394,#0b7a51);"></i>
+    </div>
+    <div class="p" style="right:420px; top:20px; width:130px; height:130px; transform:rotate(-18deg); opacity:.85;">
+      <i class="v" style="background:linear-gradient(160deg,#2a3e4c,#16242e);"></i>
+      <i class="h" style="background:linear-gradient(200deg,#334a5a,#1b2a36);"></i>
+    </div>
+    <div class="p" style="right:330px; bottom:-60px; width:190px; height:190px; transform:rotate(8deg); opacity:.9;">
+      <i class="v" style="background:linear-gradient(160deg,#243743,#121f29);"></i>
+      <i class="h" style="background:linear-gradient(200deg,#2c414f,#172530);"></i>
+    </div>
+    <div class="p" style="right:560px; bottom:40px; width:78px; height:78px; transform:rotate(26deg); opacity:.55;">
+      <i class="v" style="background:#10a06b;"></i>
+      <i class="h" style="background:#0e8f60;"></i>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="mark">
+      <svg width="56" height="56" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="16" fill="#1b2a36"/>
+        <rect x="16" y="12" width="8.6" height="40" rx="4.3" fill="#fff"/>
+        <circle cx="33.2" cy="38.6" r="15.2" fill="#fff"/>
+        <circle cx="33.2" cy="38.6" r="8.6" fill="#1b2a36"/>
+        <rect x="31.1" y="32.6" width="4.2" height="12" rx="1.4" fill="#10a06b"/>
+        <rect x="27.2" y="36.5" width="12" height="4.2" rx="1.4" fill="#10a06b"/>
+      </svg>
+      <span class="word">byes<span class="plus">+</span></span>
+    </div>
+
+    <div>
+      <div class="meta"><span class="dot"></span>AI, automation and software engineering studio</div>
+      <h1>Less complexity.<br/><span class="accent">+ Plus intelligence.</span></h1>
+    </div>
+
+    <div>
+      <div class="rule"></div>
+      <div class="svcs">AI &amp; Automation<b>+</b>Software<b>+</b>Web<b>+</b>Mobile<b>+</b>Design<b>+</b>SEO</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -7,14 +7,12 @@ import { Nav } from './components/Nav';
 import { SceneLayer } from './components/SceneLayer';
 import { Footer } from './components/Footer';
 import { Hero } from './sections/Hero';
-import { Manifesto } from './sections/Manifesto';
-import { WhatWeBuild } from './sections/WhatWeBuild';
-import { BuiltByUs } from './sections/BuiltByUs';
-import { Games } from './sections/Games';
-import { CustomDev } from './sections/CustomDev';
+import { CapabilityStrip } from './sections/CapabilityStrip';
+import { Approach } from './sections/Approach';
+import { Services } from './sections/Services';
+import { WhyUs } from './sections/WhyUs';
 import { Process } from './sections/Process';
-import { Studio } from './sections/Studio';
-import { WhatsNext } from './sections/WhatsNext';
+import { Engagement } from './sections/Engagement';
 import { Contact } from './sections/Contact';
 import { FinalCTA } from './sections/FinalCTA';
 
@@ -29,8 +27,9 @@ export default function App() {
       <Cursor />
 
       <motion.div
-        className="fixed left-0 top-0 z-[95] h-[2px] w-full origin-left bg-peach"
+        className="fixed left-0 top-0 z-[95] h-[2px] w-full origin-left bg-signal-bright"
         style={{ scaleX }}
+        aria-hidden="true"
       />
 
       <SceneLayer />
@@ -41,14 +40,12 @@ export default function App() {
         style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s ease' }}
       >
         <Hero />
-        <Manifesto />
-        <WhatWeBuild />
-        <BuiltByUs />
-        <Games />
-        <CustomDev />
+        <CapabilityStrip />
+        <Approach />
+        <Services />
+        <WhyUs />
         <Process />
-        <Studio />
-        <WhatsNext />
+        <Engagement />
         <Contact />
         <FinalCTA />
         <Footer />

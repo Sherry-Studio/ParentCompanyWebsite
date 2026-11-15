@@ -1,82 +1,70 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'motion/react';
-import { MaskLine } from '../lib/anim';
+import { motion, useScroll, useSpring } from 'motion/react';
 import { PROCESS_STEPS } from '../data/companyData';
+import { SectionHeading } from '../components/Decor';
+import { Reveal } from '../lib/anim';
 
 export const Process: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 0.75', 'end 0.35'] });
-  const line = useSpring(scrollYProgress, { stiffness: 90, damping: 30, restDelta: 0.001 });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 70%', 'end 60%'],
+  });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 90, damping: 28, restDelta: 0.001 });
 
   return (
-    <section id="process" className="relative bg-forest text-cream">
-      <div className="grain absolute inset-0 opacity-20" />
-      <div className="u-container relative py-24 md:py-36">
-        <span className="t-eyebrow text-peach/70">05 — How we build</span>
-        <h2 className="t-h2 mt-5 max-w-2xl">
-          <MaskLine text="From a sentence" />
-          <span className="t-serif italic font-normal">to a shipped product.</span>
-        </h2>
+    <section id="process" className="relative overflow-hidden bg-ink py-24 md:py-36">
+      <div className="u-container relative z-10">
+        <SectionHeading
+          eyebrow="How we work"
+          title="Six steps from"
+          accent="idea to operating."
+          lead="The same sequence on every engagement, scaled to the size of the problem. You always know which step you are in and what comes out of it."
+        />
 
-        <div ref={ref} className="mt-16 grid gap-12 md:grid-cols-[1fr_0.8fr] md:gap-20">
-          <ol className="relative">
-            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-cream/15" />
+        <div ref={ref} className="relative mt-16 md:mt-24">
+          {/* Progress rail */}
+          <div className="absolute left-[11px] top-2 bottom-2 w-px bg-mist/10 md:left-[15px]" aria-hidden="true">
             <motion.div
-              className="absolute left-[7px] top-2 w-px origin-top bg-peach"
-              style={{ scaleY: line, height: 'calc(100% - 1rem)' }}
+              className="h-full w-full origin-top bg-gradient-to-b from-signal-bright to-signal"
+              style={{ scaleY }}
             />
-            {PROCESS_STEPS.map((s, i) => {
-              const seg = i / PROCESS_STEPS.length;
-              const o = useTransform(line, [seg - 0.1, seg + 0.05], [0.3, 1]);
-              return (
-                <motion.li key={s.index} style={{ opacity: o }} className="relative mb-12 pl-10 last:mb-0">
-                  <span className="absolute left-0 top-1.5 h-4 w-4 rounded-full border-2 border-peach bg-forest" />
-                  <div className="flex items-baseline gap-3">
-                    <span className="t-eyebrow text-peach/60">{s.index}</span>
-                    <h3 className="text-2xl font-extrabold md:text-3xl">{s.title}</h3>
-                  </div>
-                  <p className="mt-2 max-w-sm text-sm text-cream/70">{s.body}</p>
-                </motion.li>
-              );
-            })}
-          </ol>
-
-          <div className="hidden md:block">
-            <div className="sticky top-32">
-              <Assembly progress={line} />
-            </div>
           </div>
+
+          <ol className="space-y-12 md:space-y-16">
+            {PROCESS_STEPS.map((step, i) => (
+              <li key={step.index}>
+                <Reveal delay={0.04} y={20}>
+                  <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-6 md:gap-10">
+                    <span
+                      className="relative mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-signal/40 bg-ink text-[10px] font-bold text-signal-bright md:h-8 md:w-8 md:text-xs"
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+
+                    <div className="grid gap-4 md:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] md:gap-12">
+                      <div>
+                        <span className="t-mono text-xs text-mist/35">{step.index}</span>
+                        <h3 className="t-h3 mt-2 text-mist">{step.title}</h3>
+                        <span className="t-eyebrow mt-3 inline-block text-signal-bright/80">
+                          {step.marker}
+                        </span>
+                      </div>
+                      <p className="text-sm leading-relaxed text-mist/60 md:text-base md:leading-relaxed">
+                        {step.body}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+                {i < PROCESS_STEPS.length - 1 && (
+                  <div className="ml-12 mt-12 h-px bg-mist/[0.07] md:ml-[72px] md:mt-16" aria-hidden="true" />
+                )}
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
-  );
-};
-
-const Assembly: React.FC<{ progress: ReturnType<typeof useSpring> }> = ({ progress }) => {
-  const items = [
-    { r: 0, s: 1.4, c: 'border-cream/25' },
-    { r: 12, s: 1.1, c: 'border-peach/40' },
-    { r: -8, s: 0.85, c: 'bg-forest/60 border-cream/20' },
-    { r: 20, s: 0.6, c: 'bg-peach/15 border-peach/30' },
-    { r: 0, s: 0.4, c: 'bg-peach shadow-[0_0_50px_rgba(249,210,186,0.4)]' },
-  ];
-  return (
-    <div className="relative mx-auto aspect-square w-full max-w-sm">
-      {items.map((it, i) => {
-        const seg = i / items.length;
-        const opacity = useTransform(progress, [seg - 0.05, seg + 0.15], [0, 1]);
-        const scale = useTransform(progress, [seg - 0.05, seg + 0.2], [0.6, 1]);
-        return (
-          <motion.div
-            key={i}
-            style={{ opacity, scale, rotate: it.r }}
-            className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl border ${it.c}`}
-            initial={false}
-          >
-            <div style={{ width: `${it.s * 14}rem`, height: `${it.s * 14}rem` }} />
-          </motion.div>
-        );
-      })}
-    </div>
   );
 };

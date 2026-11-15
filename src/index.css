@@ -1,17 +1,29 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Byesplus — design tokens
+   Brand: deep navy ground, emerald "plus" signal, light mist surfaces.
+   ========================================================================== */
+
 @theme {
-  --color-ink: #12241c;
-  --color-ink-soft: #1d4533;
-  --color-forest: #1d4533;
-  --color-clay: #5e3122;
-  --color-cream: #f7eae0;
-  --color-paper: #fcf6f0;
-  --color-peach: #f9d2ba;
-  --color-peach-deep: #f2bd9f;
+  /* Ground */
+  --color-ink: #070d13;
+  --color-navy: #111e28;
+  --color-navy-soft: #1b2a36;
+  --color-navy-lift: #22333f;
+
+  /* Signal */
+  --color-signal: #10a06b;
+  --color-signal-bright: #1fd394;
+  --color-signal-deep: #0b7a51;
+
+  /* Light surfaces */
+  --color-mist: #eef3f1;
+  --color-chalk: #fbfdfc;
+  --color-slate-ink: #223039;
 
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -25,22 +37,14 @@
   html {
     font-family: var(--font-sans);
     background-color: var(--color-ink);
-    color: var(--color-cream);
+    color: var(--color-mist);
     scroll-behavior: auto;
   }
 
   html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-  }
-
-  .lenis.lenis-stopped {
-    overflow: hidden;
-  }
+  html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
 
   body {
     margin: 0;
@@ -49,20 +53,27 @@
   }
 
   ::selection {
-    background: var(--color-peach);
-    color: var(--color-forest);
+    background: var(--color-signal-bright);
+    color: var(--color-ink);
   }
 
   h1, h2, h3, h4 {
     font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 0.98;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal-bright);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.001ms !important;
       transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
     }
   }
 }
@@ -70,79 +81,152 @@
 @layer components {
   .u-container {
     width: 100%;
-    max-width: 88rem;
+    max-width: 90rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
-  @media (min-width: 768px) {
-    .u-container { padding-inline: 2.5rem; }
-  }
-  @media (min-width: 1280px) {
-    .u-container { padding-inline: 3.5rem; }
-  }
+  @media (min-width: 768px) { .u-container { padding-inline: 2.5rem; } }
+  @media (min-width: 1280px) { .u-container { padding-inline: 4rem; } }
 
-  /* Fluid display type */
+  /* Fluid type scale */
   .t-display {
     font-weight: 800;
-    letter-spacing: -0.035em;
-    line-height: 0.9;
-    font-size: clamp(2.75rem, 11vw, 10.5rem);
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    font-size: clamp(2.5rem, 7.6vw, 7.6rem);
   }
   .t-h2 {
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 0.95;
-    font-size: clamp(2rem, 6.5vw, 5.25rem);
+    letter-spacing: -0.038em;
+    line-height: 0.94;
+    font-size: clamp(1.95rem, 5.2vw, 4.25rem);
   }
-  .t-serif {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+  .t-h3 {
+    font-weight: 700;
+    letter-spacing: -0.028em;
+    line-height: 1.05;
+    font-size: clamp(1.3rem, 2.3vw, 2rem);
   }
   .t-eyebrow {
+    font-family: var(--font-mono);
     font-size: 0.6875rem;
-    font-weight: 800;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.2em;
+  }
+  .t-mono {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .t-lead {
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    line-height: 1.6;
+    font-weight: 400;
   }
 
-  .hairline { border-color: color-mix(in srgb, currentColor 18%, transparent); }
+  /* The "+" is the brand's core mark — used as an accent glyph everywhere. */
+  .plus-mark {
+    display: inline-block;
+    color: var(--color-signal-bright);
+    font-weight: 800;
+  }
 
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
-    transition: background-size 0.4s var(--ease-out-expo);
+    transition: background-size 0.45s var(--ease-out-expo);
   }
   .link-underline:hover { background-size: 100% 1px; }
+
+  /* Primary pill button */
+  .btn-signal {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--color-signal);
+    color: #04140d;
+    padding: 0.95rem 1.8rem;
+    transition: box-shadow 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
+    box-shadow: 0 0 0 0 rgba(31, 211, 148, 0);
+  }
+  .btn-signal:hover {
+    background: var(--color-signal-bright);
+    box-shadow: 0 10px 40px -8px rgba(31, 211, 148, 0.55);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-mist) 24%, transparent);
+    padding: 0.95rem 1.8rem;
+    transition: border-color 0.35s var(--ease-out-expo), background-color 0.35s var(--ease-out-expo);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-signal-bright);
+    background-color: rgba(31, 211, 148, 0.08);
+  }
+
+  .rule { border-color: color-mix(in srgb, currentColor 14%, transparent); }
 }
 
 @layer utilities {
   .mask-line {
     display: block;
     overflow: hidden;
+    /* Room for descenders without changing the optical line spacing. */
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
   }
+
+  /* Repeating plus-glyph field, drawn from the logo mark. */
+  .plus-field {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--color-signal-bright) 20%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-signal-bright) 20%, transparent) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+  }
+
   .grain::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.4;
     mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E");
   }
+
   .no-cursor { cursor: none; }
+
+  .glow-signal { box-shadow: 0 0 80px -20px rgba(31, 211, 148, 0.45); }
 }
 
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.animate-marquee { animation: marquee 32s linear infinite; }
+.animate-marquee { animation: marquee 38s linear infinite; }
+.animate-marquee-rev { animation: marquee 44s linear infinite reverse; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-fadeIn { animation: fadeIn 0.4s var(--ease-out-expo) both; }
+
+@keyframes pulseRing {
+  0% { transform: scale(0.9); opacity: 0.55; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.animate-pulse-ring { animation: pulseRing 3.2s ease-out infinite; }

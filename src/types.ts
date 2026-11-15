@@ -1,45 +1,53 @@
-export type ProductType = 'gaming' | 'service' | 'enterprise' | 'consumer';
-
-export interface ProductItem {
-  id: string;
-  name: string;
-  type: ProductType;
-  categoryLabel: string;
-  description: string;
-  shortTagline: string;
-  externalUrl: string;
-  logoPlaceholder: {
-    symbol: string;
-    bgStyle: string;
-    accentColor: string;
-  };
-  keyHighlights: string[];
-  status: 'Active' | 'Beta' | 'Scaling';
-  platform?: string;
-  year?: string;
-}
-
-export interface DeveloperItem {
-  id: string;
-  name: string;
-  role: string;
-  portfolioUrl: string;
-  handle?: string;
-  avatarInitials: string;
-  accentBg: string;
-  specialty: string;
-}
-
 export interface NavItem {
   label: string;
   href: string;
   id: string;
 }
 
+export interface ServiceItem {
+  id: string;
+  index: string;
+  title: string;
+  summary: string;
+  detail: string;
+  deliverables: string[];
+}
+
+export interface ProcessStep {
+  index: string;
+  title: string;
+  body: string;
+  marker: string;
+}
+
+export interface Pillar {
+  title: string;
+  description: string;
+}
+
+export interface EngagementModel {
+  id: string;
+  name: string;
+  bestFor: string;
+  description: string;
+  includes: string[];
+}
+
+export interface StackGroup {
+  label: string;
+  items: string[];
+}
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
-  subject?: string;
+  company?: string;
+  service?: string;
   message: string;
 }
 

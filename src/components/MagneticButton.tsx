@@ -5,7 +5,11 @@ interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   strength?: number;
 }
 
-/** Anchor with a subtle magnetic pull toward the pointer. */
+/**
+ * Anchor with a subtle magnetic pull toward the pointer.
+ * Display is deliberately left to the caller so responsive `hidden` /
+ * `md:inline-flex` classes are not fighting a hard-coded `inline-flex`.
+ */
 export const MagneticButton: React.FC<Props> = ({ strength = 0.35, className = '', children, ...rest }) => {
   const ref = useRef<HTMLAnchorElement>(null);
   const reduce = useReducedMotion();
@@ -26,7 +30,7 @@ export const MagneticButton: React.FC<Props> = ({ strength = 0.35, className = '
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={reset}
-      className={`inline-flex items-center gap-3 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${className}`}
+      className={`items-center gap-3 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${className}`}
       {...rest}
     >
       {children}

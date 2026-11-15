@@ -1,15 +1,12 @@
 import React, { lazy, Suspense, useEffect, useRef } from 'react';
-import { EcosystemFallback } from './3d/EcosystemFallback';
+import { LatticeFallback } from './3d/LatticeFallback';
 
-const ProductEcosystem = lazy(() =>
-  import('./3d/ProductEcosystem').then((m) => ({ default: m.ProductEcosystem })),
+const PlusLattice = lazy(() =>
+  import('./3d/PlusLattice').then((m) => ({ default: m.PlusLattice })),
 );
 
-interface BoundaryProps {
-  children: React.ReactNode;
-}
-class SceneBoundary extends React.Component<BoundaryProps, { failed: boolean }> {
-  constructor(props: BoundaryProps) {
+class SceneBoundary extends React.Component<{ children: React.ReactNode }, { failed: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
     super(props);
     this.state = { failed: false };
   }
@@ -17,14 +14,13 @@ class SceneBoundary extends React.Component<BoundaryProps, { failed: boolean }> 
     return { failed: true };
   }
   render() {
-    return this.state.failed ? <EcosystemFallback /> : this.props.children;
+    return this.state.failed ? <LatticeFallback /> : this.props.children;
   }
 }
 
 /**
- * One persistent 3D layer behind the whole page.
- * Opaque sections cover it; transparent sections (hero, what's next) reveal it.
- * A single scroll-normalised progress value drives the camera + composition.
+ * One persistent 3D layer behind the page. Opaque sections cover it; the hero
+ * and final CTA let it through. A single scroll-normalised value drives it.
  */
 export const SceneLayer: React.FC = () => {
   const progressRef = useRef(0);
@@ -35,9 +31,8 @@ export const SceneLayer: React.FC = () => {
     const update = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       progressRef.current = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-      // Gentle idle parallax on the container itself
       if (wrapRef.current) {
-        wrapRef.current.style.transform = `translateY(${progressRef.current * -4}vh)`;
+        wrapRef.current.style.transform = `translateY(${progressRef.current * -3}vh)`;
       }
       raf = requestAnimationFrame(update);
     };
@@ -51,19 +46,23 @@ export const SceneLayer: React.FC = () => {
       className="fixed inset-0 z-0"
       style={{
         background:
-          'radial-gradient(120% 90% at 50% 12%, #1d4533 0%, #16352a 45%, #0f1f18 100%)',
+          'radial-gradient(125% 95% at 62% 8%, #1b2a36 0%, #111e28 42%, #070d13 100%)',
       }}
       aria-hidden="true"
     >
       <div className="grain absolute inset-0" />
-      <SceneBoundary>
-        <Suspense fallback={<EcosystemFallback />}>
-          <ProductEcosystem progressRef={progressRef} />
-        </Suspense>
-      </SceneBoundary>
-      {/* Legibility scrim: darkens toward the left where headlines sit */}
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/55 via-ink/10 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/45 to-transparent" />
+      {/* The scene is atmosphere, never the subject: held well back from the type. */}
+      <div className="absolute inset-0 opacity-55">
+        <SceneBoundary>
+          <Suspense fallback={<LatticeFallback />}>
+            <PlusLattice progressRef={progressRef} />
+          </Suspense>
+        </SceneBoundary>
+      </div>
+      {/* Legibility scrims */}
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-ink/20" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/80 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/70 to-transparent" />
     </div>
   );
 };

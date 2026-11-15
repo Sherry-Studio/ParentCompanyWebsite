@@ -17,7 +17,6 @@ export default defineConfig(() => {
         'gsap/ScrollTrigger',
         'three',
         '@react-three/fiber',
-        '@react-three/drei',
         'lucide-react',
       ],
     },
